@@ -8,9 +8,23 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="65dp"
         android:text="MAP"
-        tools:layout_editor_absoluteX="165dp"
-        tools:layout_editor_absoluteY="84dp" />
+        android:textSize="36sp"
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="90dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton3"
+        android:layout_width="83dp"
+        android:layout_height="72dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="28dp"
+        android:clickable="true"
+        android:onClick="fabPressed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
 </androidx.constraintlayout.widget.ConstraintLayout>
