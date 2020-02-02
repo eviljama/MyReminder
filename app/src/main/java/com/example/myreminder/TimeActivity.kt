@@ -1,34 +1,44 @@
 package com.example.myreminder
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.AlarmClock
+import android.text.TextUtils
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 
 class TimeActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    private lateinit var editWordView: EditText
+
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_time)
-    }
+        editWordView = findViewById(R.id.edit_word)
 
-    /** Called when the user taps the FAB button */
-    fun fabPressed(view: View) {
-
-        val editText = findViewById<TextView>(R.id.textView2)
-        val message = editText.text.toString()
-        val intent = Intent(this, MainActivity::class.java).apply {
-            putExtra(AlarmClock.EXTRA_MESSAGE, message)
+        val button = findViewById<Button>(R.id.button_save)
+        button.setOnClickListener {
+            val replyIntent = Intent()
+            if (TextUtils.isEmpty(editWordView.text)) {
+                setResult(Activity.RESULT_CANCELED, replyIntent)
+            } else {
+                val word = editWordView.text.toString()
+                replyIntent.putExtra(EXTRA_REPLY, word)
+                setResult(Activity.RESULT_OK, replyIntent)
+            }
+            finish()
         }
-        startActivity(intent)
     }
 
-    fun Context.toast(message: CharSequence) =
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    companion object {
+        const val EXTRA_REPLY = "com.example.android.wordlistsql.REPLY"
+    }
 
 
 }

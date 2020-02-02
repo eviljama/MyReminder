@@ -6,17 +6,58 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
 
-    // get reference to button
+    private val newWordActivityRequestCode = 1
+    private lateinit var listView : ListView
+    private lateinit var wordViewModel: WordViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        listView = findViewById<ListView>(R.id.reminder_list_view)
+// 1
+
+        val arrayList = ArrayList<String>()//Creating an empty arraylist
+        arrayList.add("yksi")//Adding object in arraylist
+        arrayList.add("kaksi")
+        arrayList.add("kolme")
+        arrayList.add("neljä")//Adding object in arraylist
+        arrayList.add("viisi")
+        arrayList.add("kuusi")
+        arrayList.add("seis")//Adding object in arraylist
+        arrayList.add("kasiu")
+        arrayList.add("ysi")
+        arrayList.add("kymppi")//Adding object in arraylist
+        arrayList.add("yytoo")
+        arrayList.add("kaatoo")
+        arrayList.add("kootoo")//Adding object in arraylist
+        arrayList.add("neetoo")
+        arrayList.add("viitoo")
+
+
+// 2
+        val listItems = arrayOfNulls<String>(arrayList.size)
+// 3
+        for (i in 0 until arrayList.size) {
+            val value = arrayList[i]
+            listItems[i] = value
+        }
+// 4
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
+        listView.adapter = adapter
+
+        wordViewModel = ViewModelProvider(this).get(WordViewModel::class.java)
+        wordViewModel.allWords.observe(this, Observer { words ->
+            // Update the cached copy of the words in the adapter.
+            //words?.let { adapter.setWords(it) }
+        })
     }
 
     /** Called when the user taps the Time button */

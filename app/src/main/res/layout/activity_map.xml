@@ -12,8 +12,8 @@
         android:layout_height="65dp"
         android:text="MAP"
         android:textSize="36sp"
-        tools:layout_editor_absoluteX="123dp"
-        tools:layout_editor_absoluteY="90dp" />
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton3"
